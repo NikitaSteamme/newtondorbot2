@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PhpIncludePathManager">
+    <include_path>
+      <path value="$PROJECT_DIR$/../newtondorbot2/vendor/psr/simple-cache" />
+      <path value="$PROJECT_DIR$/../newtondorbot2/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/../newtondorbot2/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/../newtondorbot2/vendor/composer" />
+      <path value="$PROJECT_DIR$/../newtondorbot2/vendor/illuminate/support" />
+      <path value="$PROJECT_DIR$/../newtondorbot2/vendor/illuminate/contracts" />
+      <path value="$PROJECT_DIR$/../newtondorbot2/vendor/guzzlehttp/promises" />
+      <path value="$PROJECT_DIR$/../newtondorbot2/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/../newtondorbot2/vendor/guzzlehttp/guzzle" />
+      <path value="$PROJECT_DIR$/../newtondorbot2/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/../newtondorbot2/vendor/irazasyed/telegram-bot-sdk" />
+      <path value="$PROJECT_DIR$/../newtondorbot2/vendor/doctrine/inflector" />
+      <path value="$PROJECT_DIR$/../newtondorbot2/vendor/symfony/contracts" />
+      <path value="$PROJECT_DIR$/../newtondorbot2/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/../newtondorbot2/vendor/symfony/translation" />
+      <path value="$PROJECT_DIR$/../newtondorbot2/vendor/nesbot/carbon" />
+    </include_path>
+  </component>
+</project>
