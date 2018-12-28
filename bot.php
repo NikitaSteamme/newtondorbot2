@@ -6,9 +6,9 @@
  * Time: 11:38
  */
 
-$file = 'index.html';
+$file = 'index.php';
 
-$new_message = $_POST;
+$new_message = var_dump($_POST);
 // Пишем содержимое в файл,
 file_put_contents($file, $new_message, FILE_APPEND | LOCK_EX);
 ?>
