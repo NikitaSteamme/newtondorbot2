@@ -9,3 +9,8 @@
 echo "hello, world!";
 
 ?>
+
+<form method="post" action="bot.php">
+    <input name="name" type="text">
+    <input type="submit">
+</form>
