@@ -33,18 +33,18 @@ if ($result === false) {
     echo "OK.\n";
 }
 
-$in = "01";
+//$in = "01";
 
-$out = '';
+//$out = '';
 
-echo "Отправляем HTTP-запрос HEAD...";
-socket_write($socket, $in, strlen($in));
-echo "OK.\n";
+//echo "Отправляем HTTP-запрос HEAD...";
+//socket_write($socket, $in, strlen($in));
+//echo "OK.\n";
 
-echo "Читаем ответ:\n\n";
-while ($out = socket_read($socket, 2048)) {
-    echo $out;
-}
+//echo "Читаем ответ:\n\n";
+//while ($out = socket_read($socket, 2048)) {
+//    echo $out;
+//}
 
 echo "Закрываем сокет...";
 socket_close($socket);
