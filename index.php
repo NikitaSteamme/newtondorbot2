@@ -33,18 +33,18 @@ if ($result === false) {
     echo "OK.\n";
 }
 
-//$in = "01";
+$in = "0x32";
 
-//$out = '';
+$out = '';
 
-//echo "Отправляем HTTP-запрос HEAD...";
-//socket_write($socket, $in, strlen($in));
-//echo "OK.\n";
+echo "Отправляем запрос на состояние выходов";
+socket_write($socket, $in, strlen($in));
+echo "OK.\n";
 
-//echo "Читаем ответ:\n\n";
-//while ($out = socket_read($socket, 2048)) {
-//    echo $out;
-//}
+echo "Читаем ответ:\n\n";
+while ($out = socket_read($socket, 2048)) {
+   echo $out;
+}
 
 echo "Закрываем сокет...";
 socket_close($socket);
@@ -52,8 +52,3 @@ echo "OK.\n\n";
 ?>
 
 ?>
-
-<form method="post" action="bot.php">
-    <input name="name" type="text">
-    <input type="submit">
-</form>
