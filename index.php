@@ -33,7 +33,7 @@ if ($result === false) {
     echo "OK.\n";
 }
 
-$in = "0x32";
+$in = "0x23";
 
 $out = '';
 
