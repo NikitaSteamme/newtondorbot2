@@ -18,8 +18,8 @@ if($text){
     }elseif ($text == "/open") {
         $client = new Client('http://admin:vkmodule@31.202.46.87:8080/protect');
         $request = $client->newRequest('/leds.cgi?led=0&timeout=0');
-        $response = $request->getResponse();
-        $response->getParsedResponse();
+        //$response = $request->getResponse();
+        //$response->getParsedResponse();
 
 
         $reply = $response;
