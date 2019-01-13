@@ -24,15 +24,15 @@ if($text){
     if ($text == "/start") {
         $reply = "Добро пожаловать в бота!";
         $telegram->sendMessage([ 'chat_id' => $chat_id, 'text' => $reply]);
-    }elseif ($text == "/open") {
+    }elseif ($text == "/open" && ($name == "Nikita_Bessonov")) {
         openDoor();
-        $reply = "Ok ".$name;
+        $reply = "Ok ";
         $telegram->sendMessage([ 'chat_id' => $chat_id, 'text' => $reply ]);
     }elseif ($text == "/link") {
         $reply = "тут будет линка";
         $telegram->sendMessage([ 'chat_id' => $chat_id, 'text' => $reply ]);
     }else{
-        $reply = "По запросу \"<b>".$text."</b>\" ничего не найдено.";
+        $reply = "В доступе отказано";
         $telegram->sendMessage([ 'chat_id' => $chat_id, 'parse_mode'=> 'HTML', 'text' => $reply ]);
     }
 }else{
