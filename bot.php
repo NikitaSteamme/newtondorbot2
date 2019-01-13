@@ -26,7 +26,7 @@ if($text){
         $telegram->sendMessage([ 'chat_id' => $chat_id, 'text' => $reply]);
     }elseif ($text == "/open") {
         openDoor();
-        $reply = "Ok";
+        $reply = "Ok ".$name;
         $telegram->sendMessage([ 'chat_id' => $chat_id, 'text' => $reply ]);
     }elseif ($text == "/link") {
         $reply = "тут будет линка";
