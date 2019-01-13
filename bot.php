@@ -9,6 +9,8 @@ $result = $telegram -> getWebhookUpdates(); //Передаем в перемен
 $text = $result["message"]["text"]; //Текст сообщения
 $chat_id = $result["message"]["chat"]["id"]; //Уникальный идентификатор пользователя
 $name = $result["message"]["from"]["username"]; //Юзернейм пользователя
+$keyboard = [["Открыть"]]; //Клавиатура
+$access = array("Nikita_Bessonov");
 
 function openDoor(){
     $client = new Client('http://admin:vkmodule@31.202.46.87:8080/protect');
@@ -23,8 +25,9 @@ function openDoor(){
 if($text){
     if ($text == "/start") {
         $reply = "Добро пожаловать в бота!";
+        $reply_markup = $telegram->replyKeyboardMarkup([ 'keyboard' => $keyboard, 'resize_keyboard' => true, 'one_time_keyboard' => false ]);
         $telegram->sendMessage([ 'chat_id' => $chat_id, 'text' => $reply]);
-    }elseif ($text == "/open" && ($name == "Nikita_Bessonov")) {
+    }elseif (($text == "/open" or $text == "Открыть") && (in_array($name, $access))) {
         openDoor();
         $reply = "Ok ";
         $telegram->sendMessage([ 'chat_id' => $chat_id, 'text' => $reply ]);
