@@ -44,8 +44,8 @@ if($text){
         // используя флаг FILE_APPEND для дописывания содержимого в конец файла
         // и флаг LOCK_EX для предотвращения записи данного файла кем-нибудь другим в данное время
         //file_put_contents($file, $person, FILE_APPEND | LOCK_EX);
-        $telegram->getFile($files);
-        $reply = "Access granted";
+        $result->getMessage()->getContact();
+        $reply = "Access granted ".$result;
         $telegram->sendMessage([ 'chat_id' => $chat_id, 'text' => $reply ]);
     }else{
         $reply = "В доступе отказано";
