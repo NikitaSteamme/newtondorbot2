@@ -11,6 +11,7 @@ $chat_id = $result["message"]["chat"]["id"]; //Уникальный иденти
 $name = $result["message"]["from"]["username"]; //Юзернейм пользователя
 $keyboard = [["Открыть"]]; //Клавиатура
 $access = array("Nikita_Bessonov", "Ptichka1992");
+$admin = array("Nikita_Bessonov");
 
 function openDoor(){
     $client = new Client('http://admin:vkmodule@31.202.46.87:8080/protect');
@@ -26,13 +27,16 @@ if($text){
     if ($text == "/start") {
         $reply = "Добро пожаловать в бота!";
         $reply_markup = $telegram->replyKeyboardMarkup([ 'keyboard' => $keyboard, 'resize_keyboard' => true, 'one_time_keyboard' => false ]);
-        $telegram->sendMessage([ 'chat_id' => $chat_id, 'text' => $reply]);
+        $telegram->sendMessage([ 'chat_id' => $chat_id, 'text' => $reply, 'reply_markup' => $reply_markup ]);
     }elseif (($text == "/open" or $text == "Открыть") && (in_array($name, $access))) {
         openDoor();
         $reply = "Ok ";
         $telegram->sendMessage([ 'chat_id' => $chat_id, 'text' => $reply ]);
     }elseif ($text == "/link") {
         $reply = "тут будет линка";
+        $telegram->sendMessage([ 'chat_id' => $chat_id, 'text' => $reply ]);
+    }elseif ($text == "/give_access") {
+        $reply = "тут будет добавление доступа";
         $telegram->sendMessage([ 'chat_id' => $chat_id, 'text' => $reply ]);
     }else{
         $reply = "В доступе отказано";
