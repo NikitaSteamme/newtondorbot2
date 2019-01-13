@@ -36,7 +36,16 @@ if($text){
         $reply = "тут будет линка";
         $telegram->sendMessage([ 'chat_id' => $chat_id, 'text' => $reply ]);
     }elseif ($text == "/give_access") {
-        $reply = "тут будет добавление доступа";
+        $files = array();
+        //$file = 'access.txt';
+        // Новый человек, которого нужно добавить в файл
+        //$person = ;
+        // Пишем содержимое в файл,
+        // используя флаг FILE_APPEND для дописывания содержимого в конец файла
+        // и флаг LOCK_EX для предотвращения записи данного файла кем-нибудь другим в данное время
+        //file_put_contents($file, $person, FILE_APPEND | LOCK_EX);
+        $telegram->getFile($files);
+        $reply = "Access granted";
         $telegram->sendMessage([ 'chat_id' => $chat_id, 'text' => $reply ]);
     }else{
         $reply = "В доступе отказано";
@@ -45,4 +54,3 @@ if($text){
 }else{
     $telegram->sendMessage([ 'chat_id' => $chat_id, 'text' => "Отправьте текстовое сообщение." ]);
 }
-    ?>
