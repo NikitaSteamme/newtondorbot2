@@ -1,14 +1,5 @@
 <?php
     include('vendor/autoload.php'); //Подключаем библиотеку
-    include('PHP-REST-Client/Client.php');
-    include('PHP-REST-Client/Exception.php');
-    include('PHP-REST-Client/IClient.php');
-    include('PHP-REST-Client/IRequest.php');
-    include('PHP-REST-Client/IResponse.php');
-    include('PHP-REST-Client/Request.php');
-    include('PHP-REST-Client/RequestException.php');
-    include('PHP-REST-Client/Response.php');
-    include('PHP-REST-Client/RequestException.php.php');
     use Telegram\Bot\Api;
 
 $telegram = new Api('749857527:AAGMZgPom3lE7t_wHcxDC9YmTgRju_6Ll40'); //Устанавливаем токен, полученный у BotFather
