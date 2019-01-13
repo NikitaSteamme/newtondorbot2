@@ -20,9 +20,9 @@ if($text){
         $request = $client->newRequest('/leds.cgi?led=0&timeout=0');
         //$response = $request->getResponse();
         //$response->getParsedResponse();
+        $response = $request->getResponse();
 
-
-        $reply = $response;
+        $reply = "Ok";
         $telegram->sendMessage([ 'chat_id' => $chat_id, 'text' => $reply ]);
     }elseif ($text == "/link") {
         $reply = "тут будет линка";
