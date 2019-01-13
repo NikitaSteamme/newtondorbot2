@@ -1,6 +1,15 @@
 <?php
     include('vendor/autoload.php'); //Подключаем библиотеку
-use Telegram\Bot\Api;
+    include('PHP-REST-Client/Client.php');
+    include('PHP-REST-Client/Exception.php');
+    include('PHP-REST-Client/IClient.php');
+    include('PHP-REST-Client/IRequest.php');
+    include('PHP-REST-Client/IResponse.php');
+    include('PHP-REST-Client/Request.php');
+    include('PHP-REST-Client/RequestException.php');
+    include('PHP-REST-Client/Response.php');
+    include('PHP-REST-Client/RequestException.php.php');
+    use Telegram\Bot\Api;
 
 $telegram = new Api('749857527:AAGMZgPom3lE7t_wHcxDC9YmTgRju_6Ll40'); //Устанавливаем токен, полученный у BotFather
 $result = $telegram -> getWebhookUpdates(); //Передаем в переменную $result полную информацию о сообщении пользователя
@@ -15,30 +24,13 @@ if($text){
         $reply = "Добро пожаловать в бота!";
         $telegram->sendMessage([ 'chat_id' => $chat_id, 'text' => $reply]);
     }elseif ($text == "/open") {
-        $url = 'http://31.202.46.87:8080/protect/status.xml';
+        $client = new Client('http://admin:vkmodule@31.202.46.87:8080/protect');
+        $request = $client->newRequest('/leds.cgi?led=0&timeout=0');
+        $response = $request->getResponse();
+        $response->getParsedResponse();
 
-        $result = file_get_contents($url, false, stream_context_create(array(
-            'http' => array(
-                'method'  => 'POST',
-                'header'  => 'Content-type: application/x-www-form-urlencoded',
-                'login' => 'admin',
-                'password' => 'vkmodule'
-            )
-        )));
-        $url = 'http://31.202.46.87:8080/protect/leds.cgi';
-        $params = array(
-            'led' => '0', // в http://localhost/post.php это будет $_POST['param1'] == '123'
-            'timeout' => '0', // в http://localhost/post.php это будет $_POST['param2'] == 'abc'
-        );
 
-        $result .= file_get_contents($url, false, stream_context_create(array(
-            'http' => array(
-                'method'  => 'POST',
-                'header'  => 'Content-type: application/x-www-form-urlencoded',
-                'content' => http_build_query($params)
-            )
-        )));
-        $reply = $result;
+        $reply = $response;
         $telegram->sendMessage([ 'chat_id' => $chat_id, 'text' => $reply ]);
     }elseif ($text == "/link") {
         $reply = "тут будет линка";
