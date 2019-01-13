@@ -10,7 +10,7 @@ $text = $result["message"]["text"]; //Текст сообщения
 $chat_id = $result["message"]["chat"]["id"]; //Уникальный идентификатор пользователя
 $name = $result["message"]["from"]["username"]; //Юзернейм пользователя
 $keyboard = [["Открыть"]]; //Клавиатура
-$access = array("Nikita_Bessonov");
+$access = array("Nikita_Bessonov", "Ptichka1992");
 
 function openDoor(){
     $client = new Client('http://admin:vkmodule@31.202.46.87:8080/protect');
