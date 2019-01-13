@@ -15,6 +15,7 @@ function openDoor(){
     $request = $client->newRequest('/leds.cgi?led=0&timeout=0');
     $request->getResponse();
     sleep(1);
+    $request = $client->newRequest('/leds.cgi?led=0&timeout=0');
     $request->getResponse();
 }
 
