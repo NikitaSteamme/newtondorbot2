@@ -10,18 +10,21 @@ $text = $result["message"]["text"]; //Текст сообщения
 $chat_id = $result["message"]["chat"]["id"]; //Уникальный идентификатор пользователя
 $name = $result["message"]["from"]["username"]; //Юзернейм пользователя
 
+function openDoor(){
+    $client = new Client('http://admin:vkmodule@31.202.46.87:8080/protect');
+    $request = $client->newRequest('/leds.cgi?led=0&timeout=0');
+    $request->getResponse();
+    sleep(1);
+    $request->getResponse();
+}
+
 
 if($text){
     if ($text == "/start") {
         $reply = "Добро пожаловать в бота!";
         $telegram->sendMessage([ 'chat_id' => $chat_id, 'text' => $reply]);
     }elseif ($text == "/open") {
-        $client = new Client('http://admin:vkmodule@31.202.46.87:8080/protect');
-        $request = $client->newRequest('/leds.cgi?led=0&timeout=0');
-        //$response = $request->getResponse();
-        //$response->getParsedResponse();
-        $response = $request->getResponse();
-
+        openDoor();
         $reply = "Ok";
         $telegram->sendMessage([ 'chat_id' => $chat_id, 'text' => $reply ]);
     }elseif ($text == "/link") {
