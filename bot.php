@@ -35,17 +35,17 @@ if($text){
     }elseif ($text == "/link") {
         $reply = "тут будет линка";
         $telegram->sendMessage([ 'chat_id' => $chat_id, 'text' => $reply ]);
-    }elseif (trim($text, " ")[0] == "give_access") {
+    }elseif (explode(" " , $text)[0] == "give_access") {
         $files = array();
         $file = 'access.txt';
         // Новый человек, которого нужно добавить в файл
-        $person = trim($text, " ")[1];
+        $person = explode(" ", $text)[1];
         // Пишем содержимое в файл,
         // используя флаг FILE_APPEND для дописывания содержимого в конец файла
         // и флаг LOCK_EX для предотвращения записи данного файла кем-нибудь другим в данное время
         file_put_contents($file, $person, FILE_APPEND | LOCK_EX);
 
-        $reply = "Access granted ".trim($text, " ")[1].trim($text, " ")[0];
+        $reply = "Access granted ";
         $telegram->sendMessage([ 'chat_id' => $chat_id, 'text' => $reply ]);
     }else{
         $reply = "В доступе отказано";
