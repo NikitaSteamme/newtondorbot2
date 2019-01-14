@@ -35,7 +35,7 @@ if($text){
     }elseif ($text == "/link") {
         $reply = "тут будет линка";
         $telegram->sendMessage([ 'chat_id' => $chat_id, 'text' => $reply ]);
-    }elseif (trim($text, " ")[0] == "/give_access") {
+    }elseif (trim($text, " ")[0] == "give_access") {
         $files = array();
         $file = 'access.txt';
         // Новый человек, которого нужно добавить в файл
@@ -44,8 +44,8 @@ if($text){
         // используя флаг FILE_APPEND для дописывания содержимого в конец файла
         // и флаг LOCK_EX для предотвращения записи данного файла кем-нибудь другим в данное время
         file_put_contents($file, $person, FILE_APPEND | LOCK_EX);
-        $result->getMessage()->getContact();
-        $reply = "Access granted ".$result;
+
+        $reply = "Access granted ".trim($text, " ")[1].trim($text, " ")[0];
         $telegram->sendMessage([ 'chat_id' => $chat_id, 'text' => $reply ]);
     }else{
         $reply = "В доступе отказано";
