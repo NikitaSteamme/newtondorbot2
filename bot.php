@@ -43,9 +43,13 @@ if($text){
         // Пишем содержимое в файл,
         // используя флаг FILE_APPEND для дописывания содержимого в конец файла
         // и флаг LOCK_EX для предотвращения записи данного файла кем-нибудь другим в данное время
-        file_put_contents($file, $person, FILE_APPEND | LOCK_EX);
+        $fp = fopen("access.txt", "a"); // Открываем файл в режиме записи
+        $mytext = $person."\r\n"; // Исходная строка
+        $test = fwrite($fp, $mytext); // Запись в файл
+        if ($test) $reply = 'Данные в файл успешно занесены.';
+        else $reply = 'Ошибка при записи в файл.';
+        fclose($fp); //Закрытие файла
 
-        $reply = "Access granted to ".$person;
         $telegram->sendMessage([ 'chat_id' => $chat_id, 'text' => $reply ]);
     }else{
         $reply = "В доступе отказано";
