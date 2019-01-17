@@ -45,7 +45,7 @@ if($text){
         // и флаг LOCK_EX для предотвращения записи данного файла кем-нибудь другим в данное время
         file_put_contents($file, $person, FILE_APPEND | LOCK_EX);
 
-        $reply = "Access granted ";
+        $reply = "Access granted to ".$person;
         $telegram->sendMessage([ 'chat_id' => $chat_id, 'text' => $reply ]);
     }else{
         $reply = "В доступе отказано";
