@@ -22,6 +22,56 @@ function openDoor(){
     $request->getResponse();
 }
 
+final class FileReader
+{
+    protected $handler = null;
+    protected $fbuffer = "";
+
+
+    /**
+     * Конструктор класса, открывающий файл для работы
+     *
+     * @param string $filename
+     */
+    public function __construct($filename)
+    {
+        if(!($this->handler = fopen($filename, "rb")))
+            throw new Exception("Cannot open the file");
+    }
+
+
+    /**
+     * Построчное чтение всего файла с учетом сдвига
+     *
+     * @return string
+     */
+    public function ReadAll()
+    {
+        if(!$this->handler)
+            throw new Exception("Invalid file pointer");
+
+        while(!feof($this->handler))
+            $this->fbuffer .= fgets($this->handler);
+
+        return $this->fbuffer;
+    }
+
+
+    /**
+     * Установить строку, с которой производить чтение файла
+     *
+     * @param int  $line
+     */
+    public function SetOffset($line)
+    {
+        if(!$this->handler)
+            throw new Exception("Invalid file pointer");
+
+        while(!feof($this->handler) && $line--) {
+            fgets($this->handler);
+        }
+    }
+};
 
 if($text){
     if ($text == "/start") {
@@ -39,16 +89,9 @@ if($text){
 
         $reply = "ошибка\n";
 
-        $handle = @fopen("/access.txt", "r");
-        if ($handle) {
-            while (($buffer = fgets($handle, 4096)) !== false) {
-                $reply = $buffer;
-            }
-            if (!feof($handle)) {
-                $reply = "Ошибка: fgets() неожиданно потерпел неудачу\n";
-            }
-            fclose($handle);
-        }
+        $stream = new FileReader("access.txt");
+        $stream->SetOffset(0);
+        $reply = $stream->ReadAll();
         $telegram->sendMessage([ 'chat_id' => $chat_id, 'text' => $reply ]);
 
     }elseif (mb_strtolower (explode(" " , $text)[0]) == "give_access") {
