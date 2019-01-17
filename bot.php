@@ -35,7 +35,23 @@ if($text){
     }elseif ($text == "/link") {
         $reply = "тут будет линка";
         $telegram->sendMessage([ 'chat_id' => $chat_id, 'text' => $reply ]);
-    }elseif (explode(" " , $text)[0] == "give_access") {
+    }elseif (mb_strtolower (explode(" " , $text)[0]) == "check_access") {
+
+        $reply = "ошибка\n";
+
+        $handle = @fopen("/access.txt", "r");
+        if ($handle) {
+            while (($buffer = fgets($handle, 4096)) !== false) {
+                $reply = $buffer;
+            }
+            if (!feof($handle)) {
+                $reply = "Ошибка: fgets() неожиданно потерпел неудачу\n";
+            }
+            fclose($handle);
+        }
+        $telegram->sendMessage([ 'chat_id' => $chat_id, 'text' => $reply ]);
+
+    }elseif (mb_strtolower (explode(" " , $text)[0]) == "give_access") {
         $files = array();
         $file = 'access.txt';
         // Новый человек, которого нужно добавить в файл
