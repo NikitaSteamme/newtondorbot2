@@ -15,7 +15,7 @@ $admin = array("Nikita_Bessonov");
 
 function openDoor(){
     $client = new Client('http://admin:vkmodule@31.202.46.87:8080/protect');
-    $request = $client->newRequest('/leds.cgi?led=0&timeout=0');
+    $request = $client->newRequest('/leds.cgi?led=1&timeout=0');
     $request->getResponse();
     sleep(1);
     $request = $client->newRequest('/leds.cgi?led=0&timeout=0');
