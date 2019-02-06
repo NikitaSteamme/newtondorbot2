@@ -19,6 +19,8 @@
       <path value="$PROJECT_DIR$/../newtondorbot2/vendor/symfony/translation" />
       <path value="$PROJECT_DIR$/../newtondorbot2/vendor/nesbot/carbon" />
       <path value="$PROJECT_DIR$/../newtondorbot2/vendor/romanpitak/php-rest-client" />
+      <path value="$PROJECT_DIR$/../newtondorbot2/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/../newtondorbot2/vendor/monolog/monolog" />
     </include_path>
   </component>
 </project>
