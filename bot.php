@@ -2,6 +2,8 @@
     include('vendor/autoload.php'); //Подключаем библиотеку
     use Telegram\Bot\Api;
     use RestClient\Client;
+    use Monolog\Logger;
+    use Monolog\Handler\StreamHandler;
 
 $telegram = new Api('749857527:AAGMZgPom3lE7t_wHcxDC9YmTgRju_6Ll40'); //Устанавливаем токен, полученный у BotFather
 $result = $telegram -> getWebhookUpdates(); //Передаем в переменную $result полную информацию о сообщении пользователя
@@ -13,6 +15,10 @@ $keyboard = [["Открыть"]]; //Клавиатура
 $access = array("Nikita_Bessonov", "Ptichka1992");
 $admin = array("Nikita_Bessonov");
 
+$log = new Logger('general');
+$log->pushHandler(new StreamHandler('logs/your.log', Logger::WARNING));
+
+echo "everything fine!";
 function openDoor(){
     $client = new Client('http://admin:vkmodule@31.202.46.87:8080/protect');
     $request = $client->newRequest('/leds.cgi?led=1&timeout=0');
@@ -74,6 +80,7 @@ final class FileReader
 };
 
 if($text){
+    $log->warning('New request from '.$name.". He require  ".$text);
     if ($text == "/start") {
         $reply = "Добро пожаловать в бота!";
         $reply_markup = $telegram->replyKeyboardMarkup([ 'keyboard' => $keyboard, 'resize_keyboard' => true, 'one_time_keyboard' => false ]);

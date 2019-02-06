@@ -7,6 +7,6 @@
  */
 
 
-echo "<p>Hello world from dorbot3</p>>";
+echo "<p>Hello world from dorbot3</p>";
 ?>
 
